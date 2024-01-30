@@ -6,6 +6,7 @@ services:
     ports:
       - ${APP_PORT}:4000
     command: mix phx.server
+    tty: true
     volumes:
       - .:/workspace
       - node_modules:/workspace/assets/node_modules

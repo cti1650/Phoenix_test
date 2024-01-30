@@ -21,6 +21,7 @@ cp .env.example .env
 docker compose run --rm app mix --version
 docker compose run --rm db psql --version
 docker compose up -d
+docker compose run --rm app mix deps.get
 docker compose run --rm app mix ecto.create
 ```
 
