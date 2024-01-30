@@ -11,4 +11,5 @@ RUN apt-get update && apt-get install -y \
 
 RUN mix local.hex --force && \
 	mix archive.install hex phx_new 1.7.7 --force && \
-	mix local.rebar --force
+	mix local.rebar --force && \
+    mix deps.get
