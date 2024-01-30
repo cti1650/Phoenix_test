@@ -1,0 +1,28 @@
+version: '3'
+services:
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  web:
+    image: elixir:latest
+    environment:
+      MIX_ENV: dev
+    volumes:
+      - .:/app
+    ports:
+      - "4000:4000"
+    depends_on:
+      - db
+    command: >
+      sh -c '
+        mix local.hex --force &&
+        mix local.rebar --force &&
+        mix deps.get &&
+        (cd assets && npm install) &&
+        mix phx.server'
