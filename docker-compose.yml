@@ -5,6 +5,8 @@ services:
     build: ./.docker-config/app
     ports:
       - ${APP_PORT}:4000
+    depends_on:
+      - "db"
     command: mix phx.server
     tty: true
     volumes:
